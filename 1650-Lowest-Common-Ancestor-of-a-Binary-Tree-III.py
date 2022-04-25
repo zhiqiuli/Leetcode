@@ -20,9 +20,40 @@ class Solution:
         while q not in path:
             q = q.parent
         return q
-    
+
 """
 METHOD 2
+"""
+class Solution:
+    def lowestCommonAncestor(self, p: 'Node', q: 'Node') -> 'Node':
+        p_depth = self.get_depth(p)
+        q_depth = self.get_depth(q)
+        
+        if p_depth > q_depth:
+            diff = p_depth - q_depth
+            for _ in range(diff):
+                p = p.parent
+
+        if p_depth < q_depth:
+            diff = q_depth - p_depth
+            for _ in range(diff):
+                q = q.parent
+        
+        while p != q:
+            p = p.parent
+            q = q.parent
+            
+        return p
+                
+    def get_depth(self, node):
+        depth = 0
+        while node:
+            depth += 1
+            node = node.parent
+        return depth
+
+"""
+METHOD 3
 """
 class Solution:
     def lowestCommonAncestor(self, p: 'Node', q: 'Node') -> 'Node':
