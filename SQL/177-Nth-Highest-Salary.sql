@@ -12,3 +12,37 @@ SET M = N - 1;
       )
   );
 END
+
+
+
+--Option 2
+CREATE FUNCTION getNthHighestSalary(@N INT) RETURNS INT AS
+BEGIN
+    RETURN (
+        SELECT 
+            CASE
+                WHEN COUNT(*) < (@N) THEN NULL
+                ELSE MIN(salary)
+            END
+        FROM (
+            SELECT DISTINCT TOP (@N) salary
+            FROM Employee
+            ORDER BY salary DESC
+        ) tmp
+    );
+END
+
+/*
+Note:
+(1) 可以用在SELECT上面
+
+CASE
+    WHEN condition1 THEN result1
+    WHEN condition2 THEN result2
+    WHEN conditionN THEN resultN
+    ELSE result
+END;
+
+(2) 变量名使用(@N)
+
+*/
