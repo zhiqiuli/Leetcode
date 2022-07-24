@@ -1,6 +1,9 @@
 Notes:
 
-1. subquery must use an alias;
+1. subquery must use an alias
+
+select *
+from (select * from subquery_table) u
 
 2. distinct a, b, c -> 选出unique的a, b, c;
 
@@ -17,8 +20,10 @@ Notes:
     end
 
 7. WITH table_name as (SELECT...) define a temporary table
-   for multiple tables, try 
-   with table1 as (select ...), table2 as (select ...)
+   for multiple tables, use one WITH
+
+with temp1 as (select * from table1),
+     temp2 as (select * from table2)
 
 8. cumulative sum
 	SELECT
