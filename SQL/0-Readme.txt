@@ -35,3 +35,11 @@ with temp1 as (select * from table1),
 10. LAG(arrival_time, 1, 0) OVER (ORDER BY arrival_time) t_before, --LAG('return value', 'offset', 'default value')
 
 11. DATEADD(interval, number, date)
+
+12. cumsum...
+
+see 534
+
+13. island problem...
+
+see 1811
