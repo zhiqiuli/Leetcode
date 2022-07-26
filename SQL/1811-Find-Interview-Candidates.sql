@@ -23,7 +23,11 @@ with t0 as  (
 */
 
 t1 as (
-    select user_id, contest_id, dense_rank() over(partition by user_id order by contest_id) as rn 
+    select user_id,
+           contest_id,
+           -- no need to use DESC inside the OVER
+           -- the syntax is like PARTITION BY ... ORDER BY ..., ...
+           dense_rank() over (partition by user_id order by user_id, contest_id) as rn
     from t0),
 
 /*
