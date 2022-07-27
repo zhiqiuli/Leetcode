@@ -10,6 +10,7 @@ select player_id,
 from Activity
 
 -- Option 2
+-- sum(*) is used in the group by clause
 select b.player_id, b.event_date, sum(row.games_played) as games_played_so_far
 from Activity row, Activity b
 where row.event_date <= b.event_date and row.player_id = b.player_id

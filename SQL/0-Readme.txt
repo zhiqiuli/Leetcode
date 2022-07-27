@@ -9,7 +9,9 @@ from (select * from subquery_table) u
 
 3. count(unique a) -> count()里面也可以使用unique
 
-4. ROUND(3.1415, 2) = 3.14
+4. Some useful functions such as
+     ROUND(3.1415, 2) = 3.14
+     YEAR('2021-1-4') = 2021
 
 5. the division in the SQL for integers cannot automatically do type transform
 
@@ -25,10 +27,16 @@ from (select * from subquery_table) u
 with temp1 as (select * from table1),
      temp2 as (select * from table2)
 
-8. cumulative sum
-	SELECT
-	SUM(salary) over(order by salary) as rn
+8. cumulative sum for a column (see 534)
+	
+	Option 1
+
+	SELECT SUM(salary) over(order by salary) as rn
 	FROM Candidates
+
+	Option 2
+
+	INNER JOIN & GROUP BY
 
 9. ISNULL(NULL, 0) return 0 if var is NULL
 
@@ -36,10 +44,6 @@ with temp1 as (select * from table1),
 
 11. DATEADD(interval, number, date)
 
-12. cumsum...
-
-see 534
-
-13. island problem...
+12. island problem...
 
 see 1811
