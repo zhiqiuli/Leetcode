@@ -54,3 +54,5 @@ with temp1 as (select * from table1),
 11. island problem...
 
 see 1811
+
+12. REVIEW 1484 & 1321 (2022/7/27)
