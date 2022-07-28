@@ -9,9 +9,18 @@ from (select * from subquery_table) u
 
 3. count(unique a) -> count()里面也可以使用unique
 
-4. Some useful functions such as
+4. Some handful functions for dates, numbers, and strings,
+
+	YEAR('2021-1-4')                        = 2021
+     DATEADD(day, 1, '2020-9-11')            = '2021-9-12' # DATEADD(interval, numbers, date)
+     DATEDIFF(day, '2020-9-11', '2020-9-15') = 4 # DATEDIFF(interval, date1, date2)
+
      ROUND(3.1415, 2) = 3.14
-     YEAR('2021-1-4') = 2021
+     SELECT CAST(col as float) ... = 1.0 or SELECT 1.0 * col as col
+     
+     CONCAT('x', '+', 'y')  = 'x+y'
+     SUBSTRING('xyz', 1, 2) = 'xy'
+
 
 5. the division in the SQL for integers cannot automatically do type transform
 
@@ -42,8 +51,6 @@ with temp1 as (select * from table1),
 
 10. LAG(arrival_time, 1, 0) OVER (ORDER BY arrival_time) t_before, --LAG('return value', 'offset', 'default value')
 
-11. DATEADD(interval, number, date)
-
-12. island problem...
+11. island problem...
 
 see 1811
