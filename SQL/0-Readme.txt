@@ -2,8 +2,8 @@ Notes:
 
 1. subquery must use an alias
 
-select *
-from (select * from subquery_table) u
+	select *
+	from (select * from subquery_table) u
 
 2. distinct a, b, c -> 选出unique的a, b, c;
 
@@ -11,8 +11,8 @@ from (select * from subquery_table) u
 
 4. Some handful functions for dates, numbers, and strings,
 
-	YEAR('2021-1-4')                        = 2021
-     DATEADD(day, 1, '2020-9-11')            = '2021-9-12' # DATEADD(interval, numbers, date)
+	  YEAR('2021-1-4') = 2021
+     DATEADD(day, 1, '2020-9-11') = '2021-9-12' # DATEADD(interval, numbers, date)
      DATEDIFF(day, '2020-9-11', '2020-9-15') = 4 # DATEDIFF(interval, date1, date2)
 
      ROUND(3.1415, 2) = 3.14
@@ -20,6 +20,13 @@ from (select * from subquery_table) u
      
      CONCAT('x', '+', 'y')  = 'x+y'
      SUBSTRING('xyz', 1, 2) = 'xy'
+     STRING_AGG(product, ',') WITHIN GROUP (ORDER BY product) AS products
+     		=> 'a','b','c' => 'a,b,b'
+
+     ROW_NUMBER() OVER (PARTITION BY ... ORDER BY ...) as RN = gives the row number
+
+     Moving average ...
+     SUM(SUM(amount)) OVER (ORDER BY visited_on ROWS BETWEEN 6 PRECEDING AND CURRENT ROW) AS 'Amount'
 
 
 5. the division in the SQL for integers cannot automatically do type transform
@@ -56,3 +63,6 @@ with temp1 as (select * from table1),
 see 1811
 
 12. REVIEW 1484 & 1321 (2022/7/27)
+
+13. -- only shows last 6 rows
+	 OFFSET 6 ROWS
