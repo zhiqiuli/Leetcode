@@ -23,7 +23,10 @@ Notes:
      STRING_AGG(product, ',') WITHIN GROUP (ORDER BY product) AS products
      		=> 'a','b','c' => 'a,b,b'
 
-     ROW_NUMBER() OVER (PARTITION BY ... ORDER BY ...) as RN = gives the row number
+     ROW_NUMBER() OVER (PARTITION BY ... ORDER BY ...) as RN => row number   a, b, b, c, d -> 1, 2, 3, 4, 5
+     RANK()       OVER (PARTITION BY ... ORDER BY ...) as RK =>       rank   a, b, b, c, d -> 1, 2, 2, 4, 5
+     DENSE_RANK() OVER (PARTITION BY ... ORDER BY ...) as RK => dense rank   a, b, b, c, d -> 1, 2, 2, 3, 4
+     COUNT(*)     OVER (PARTITION BY ...)                    => 
 
      Moving average ...
      SUM(SUM(amount)) OVER (ORDER BY visited_on ROWS BETWEEN 6 PRECEDING AND CURRENT ROW) AS 'Amount'
