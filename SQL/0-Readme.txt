@@ -67,5 +67,8 @@ see 1811
 
 12. REVIEW 1484 & 1321 (2022/7/27)
 
-13. -- only shows last 6 rows
-	 OFFSET 6 ROWS
+13. OFFSET 6 ROWS -- only shows last 6 rows
+
+	 ORDER BY id
+	 OFFSET 2 ROWS -- skip first 2 rows
+	 FETCH NEXT 1 ROWS ONLY -- select next 1 row
