@@ -26,7 +26,8 @@ Notes:
      ROW_NUMBER() OVER (PARTITION BY ... ORDER BY ...) as RN => row number   a, b, b, c, d -> 1, 2, 3, 4, 5
      RANK()       OVER (PARTITION BY ... ORDER BY ...) as RK =>       rank   a, b, b, c, d -> 1, 2, 2, 4, 5
      DENSE_RANK() OVER (PARTITION BY ... ORDER BY ...) as RK => dense rank   a, b, b, c, d -> 1, 2, 2, 3, 4
-     COUNT(*)     OVER (PARTITION BY ...)                    => 
+     COUNT()      OVER (PARTITION BY ...)                    => 
+     SUM()        OVER (PARTITION BY ... ORDER BY ...) as CUMSUM => Cumulative sum for a column
 
      Moving average ...
      SUM(SUM(amount)) OVER (ORDER BY visited_on ROWS BETWEEN 6 PRECEDING AND CURRENT ROW) AS 'Amount'
@@ -46,17 +47,12 @@ Notes:
 with temp1 as (select * from table1),
      temp2 as (select * from table2)
 
-8. cumulative sum for a column (see 534)
+8. [*] Cumulative sum for a column (see Leetcode 534)
 	
-	Option 1
+	Option 1 - Window function
 
-	SELECT SUM(salary) over(order by salary) as rn
-	FROM Candidates
-
-	Option 2
-
-	INNER JOIN & GROUP BY
-
+	Option 2 - INNER JOIN & GROUP BY
+	
 9. ISNULL(NULL, 0) return 0 if var is NULL
 
 10. LAG(arrival_time, 1, 0) OVER (ORDER BY arrival_time) t_before, --LAG('return value', 'offset', 'default value')
