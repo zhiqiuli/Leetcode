@@ -14,12 +14,14 @@ Notes:
 	  YEAR('2021-1-4') = 2021
      DATEADD(day, 1, '2020-9-11') = '2021-9-12' # DATEADD(interval, numbers, date)
      DATEDIFF(day, '2020-9-11', '2020-9-15') = 4 # DATEDIFF(interval, date1, date2)
+     DATENAME(weekday, '2022-8-4') = 'Thursday'
 
      ROUND(3.1415, 2) = 3.14
      SELECT CAST(col as float) ... = 1.0 or SELECT 1.0 * col as col
      
      CONCAT('x', '+', 'y')  = 'x+y'
      SUBSTRING('xyz', 1, 2) = 'xy'
+     LEFT('xyz', 1) = 'x'
      STRING_AGG(product, ',') WITHIN GROUP (ORDER BY product) AS products
      		=> 'a','b','c' => 'a,b,b'
 
