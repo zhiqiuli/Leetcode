@@ -37,6 +37,5 @@ class Solution:
             matched = (s[0] == p[0]) and self.dfs(s[1:], p[1:], i+1, j+1, memo)
         '''
         
-        
         memo[(i, j)] = matched
         return matched
