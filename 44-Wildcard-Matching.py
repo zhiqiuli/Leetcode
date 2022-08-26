@@ -21,5 +21,22 @@ class Solution:
         else:
             matched = self.dfs(s, p, i, j + 1, memo) or self.dfs(s, p, i + 1, j, memo)
         
+        '''
+        # another way to write the logic
+        # 3 different cases are corresponding to 3 cases
+        # * takes 1 position from s or takes no position from s
+        if p[0] == '*':
+            matched = self.dfs(s[1:], p, i+1, j, memo) or self.dfs(s, p[1:], i, j+1, memo)
+        
+        # ? always takes 1 position from s
+        elif p[0] == '?':
+            matched = self.dfs(s[1:], p[1:], i+1, j+1, memo)
+        
+        # compares the 1st elements in s and p and pass to next level
+        else:
+            matched = (s[0] == p[0]) and self.dfs(s[1:], p[1:], i+1, j+1, memo)
+        '''
+        
+        
         memo[(i, j)] = matched
         return matched
