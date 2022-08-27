@@ -19,6 +19,7 @@ class Solution:
         
         for day in range(1, total_days+1):
             # Add all the events that start today
+            # 或者加入今天可以参加的所有活动 events[i_event][0] <= day <= events[i_event][1]
             while event_id < len(events) and events[event_id][0] == day:
                 heappush(min_heap, events[event_id][1])
                 event_id += 1
@@ -27,10 +28,10 @@ class Solution:
             while min_heap and min_heap[0] < day:
                 heappop(min_heap)
             
+            # NOTE:这个地方用的是if，每天只能参加一个活动
             # if any event that can be attended today, let's attend it
-            
-            if  min_heap:
-                heappop(min_heap)
-                num_events_attended += 1
+            if min_heap:
+               heappop(min_heap)
+               num_events_attended += 1
                 
         return num_events_attended
