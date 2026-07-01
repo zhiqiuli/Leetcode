@@ -20,3 +20,19 @@ class Solution:
         # print(left, right, cur_sum)
         
         return 0 if min_len == len(nums) + 1 else min_len
+
+
+class Solution:
+    def minSubArrayLen(self, target: int, nums: List[int]) -> int:
+        presum = [0] * (len(nums) + 1)
+        for i in range(1, len(nums) + 1):
+            presum[i] = presum[i-1] + nums[i-1]
+        left, right = 0, 1
+        res = sys.maxsize
+        while right < len(nums) + 1:
+            if presum[right] - presum[left] < target:
+                right += 1
+            else:
+                res = min(res, right - left)
+                left += 1
+        return 0 if res == sys.maxsize else res
